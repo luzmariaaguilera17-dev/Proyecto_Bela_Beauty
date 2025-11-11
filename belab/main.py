@@ -2,6 +2,7 @@ import flet as ft
 from views.home_view import HomeView
 from views.servicios_view import ServiciosView
 from views.contacto_view import ContactoView
+from views.catalogo_view import CatalogoView
 from views.navbar import NavBar
 
 
@@ -11,12 +12,10 @@ def main(page: ft.Page):
     page.window_height = 600
     page.theme_mode = ft.ThemeMode.LIGHT
     page.padding = 0
-    page.bgcolor = "#f8f8f8"
+    page.bgcolor = "#fff9f5"  # Naranja muy suave
 
-    # Contenedor de contenido dinámico
     contenido = ft.Container(expand=True, padding=30)
 
-    # --------- Función de navegación ----------
     def mostrar_pantalla(pantalla):
         if pantalla == "inicio":
             contenido.content = HomeView(mostrar_pantalla)
@@ -24,20 +23,13 @@ def main(page: ft.Page):
             contenido.content = ServiciosView()
         elif pantalla == "contacto":
             contenido.content = ContactoView()
+        elif pantalla == "catalogo":
+            contenido.content = CatalogoView()
         page.update()
 
-    # Crear barra de navegación
     navbar = NavBar(mostrar_pantalla)
+    page.add(ft.Column([navbar, contenido], expand=True))
 
-    # Estructura principal
-    page.add(
-        ft.Column(
-            controls=[navbar, contenido],
-            expand=True,
-        )
-    )
-
-    # Mostrar la vista inicial
     mostrar_pantalla("inicio")
 
 
