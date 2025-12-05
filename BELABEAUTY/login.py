@@ -3,14 +3,43 @@ from db import verificar_login, crear_usuario
 
 def login_view(page, on_login_success):
     # Campos de login
-    usuario_input = ft.TextField(label="Usuario", autofocus=True, width=300)
-    contraseña_input = ft.TextField(label="Contraseña", password=True, can_reveal_password=True, width=300)
+    usuario_input = ft.TextField(
+        label="Usuario", 
+        autofocus=True, 
+        width=300,
+        on_submit=lambda e: login_click(e)  # Enter en usuario
+    )
+    contraseña_input = ft.TextField(
+        label="Contraseña", 
+        password=True, 
+        can_reveal_password=True, 
+        width=300,
+        on_submit=lambda e: login_click(e)  # Enter en contraseña
+    )
 
     # Campos de registro
-    usuario_reg_input = ft.TextField(label="Usuario", width=300)
-    contraseña_reg_input = ft.TextField(label="Contraseña", password=True, can_reveal_password=True, width=300)
-    nombre_input = ft.TextField(label="Nombre completo", width=300)
-    correo_input = ft.TextField(label="Correo electrónico", width=300)
+    usuario_reg_input = ft.TextField(
+        label="Usuario", 
+        width=300,
+        on_submit=lambda e: registrar_click(e)  # Enter en usuario registro
+    )
+    contraseña_reg_input = ft.TextField(
+        label="Contraseña", 
+        password=True, 
+        can_reveal_password=True, 
+        width=300,
+        on_submit=lambda e: registrar_click(e)  # Enter en contraseña registro
+    )
+    nombre_input = ft.TextField(
+        label="Nombre completo", 
+        width=300,
+        on_submit=lambda e: registrar_click(e)  # Enter en nombre
+    )
+    correo_input = ft.TextField(
+        label="Correo electrónico", 
+        width=300,
+        on_submit=lambda e: registrar_click(e)  # Enter en correo
+    )
 
     mensaje = ft.Text("", color="red", size=14)
 
@@ -110,7 +139,8 @@ def login_view(page, on_login_success):
                 contraseña_input,
                 login_button,
                 registro_box,
-                mensaje
+                mensaje,
+                ft.Text("Presiona Enter para continuar", size=12, color="#888888", italic=True)
             ],
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,

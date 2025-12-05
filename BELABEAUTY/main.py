@@ -15,6 +15,7 @@ def main(page: ft.Page):
     page.window_maximized = True
     page.padding = 0
     page.scroll = ft.ScrollMode.AUTO
+    page.assets_dir = "assets"
 
     inicializar_bd()
 
